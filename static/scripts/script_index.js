@@ -1,25 +1,44 @@
+let contents = ['','',''];
+let indexik = 0;
+
 async function fetchData() {
   try {
     const res = await fetch('/getall');
     const data = await res.json();
-    const top = data.top;
-    const left = data.left;
-    const right = data.right;
-    const topcont = document.getElementById('topcont');
-    const rightcont = document.getElementById('rightcont');
-    const leftcont = document.getElementById('leftcont');
-    topcont.innerText = top;
-    leftcont.innerText = left;
-    rightcont.innerText = right;
+    contents[0] = data.top;
+    contents[1] = data.left;
+    contents[2] = data.right;
   } catch (e) {
     console.error(e);
   }
 }
 
-let intervalId;
+function show() {
+  const titelem = document.getElementById('titulek');
+  const contelem = document.getElementById('contents');
+  while (contents[indexik] == '') {
+    indexik = (indexik+1) % 3;
+  }
+  if (indexik == 0) {
+    titelem.innerText = 'Pravidelné akce:';
+  }
+  else if (indexik == 1) {
+    titelem.innerText = 'Další oznámení:';
+  }
+  else {
+    titelem.innerText = 'Blížící se akce:';
+  };
+  contelem.innerText = contents[indexik];  
+  indexik = (indexik+1) % 3;
+}
 
 function startPolling() {
-  intervalId = setInterval(fetchData, 3000); 
+  interval1 = setInterval(fetchData, 2999); 
+}
+
+function startShowing() {
+  interval2 = setInterval(show, 7000);
 }
 
 startPolling();
+startShowing();

@@ -86,16 +86,14 @@ def get_all_data():
         if vec[i] == ['1']:
             udalost = data[i]
             if len(udalost) > 3:
-                top += f'{udalost[0]} v {udalost[1]}:{udalost[2]} : {udalost[3]} \n'
+                top += f'{udalost[0]} v {udalost[1]}:{udalost[2]} - {udalost[3]} \n'
 
 
     f = open('./navic.txt', 'r', encoding='utf-8')
     lines = f.readlines()
-    introl = 'Další oznámení: \n \n'
     left = ''.join(lines)
     f.close()
 
-    intror = 'Blížící se akce: \n \n'
     right = ''
     zadyl = read_data('./zadyl.csv')
     tsp_now = datetime.now(timezone.utc).timestamp()
@@ -105,9 +103,9 @@ def get_all_data():
             dt = datetime(year, month, day+1, tzinfo=timezone.utc)
             tsp = dt.timestamp()
             if tsp_now < tsp:
-                right += f'{line[3]} : {line[4]} \n'
+                right += f'{line[3]} - {line[4]} \n'
 
-    return {'top': top, 'left': introl + left, 'right': intror + right}
+    return {'top': top, 'left': left, 'right': right}
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))

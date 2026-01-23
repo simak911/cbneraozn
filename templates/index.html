@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Fullscreen Centered Layout</title>
+  <title>Oznámení</title>
   <style>
     html, body {
       margin: 0;
@@ -24,61 +24,18 @@
       text-align: center;
     }
 
-    header {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      margin-bottom: clamp(16px, 3vh, 32px);
-    }
-
     .intro {
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
-      margin-bottom: clamp(24px, 5vh, 48px);
-      max-width: 900px;
+      font-size: clamp(1rem, 3.5vw, 4rem);
+      max-width: 90vw;
       align-self: center;
-    }
-
-    .columns {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      align-items: center;
-    }
-
-    .divider {
-      background: rgba(255, 255, 255, 0.3);
-      height: 70%;
-      justify-self: center;
-    }
-
-    .column {
-      padding: clamp(16px, 3vw, 32px);
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
   </style>
 </head>
 <body>
   <div class="screen">
-    <header>
-      Oznámení CB Neratovice
-    </header>
-
     <div class="intro" >
-      <h2>Pravidelné akce:</h2>
-      <div id="topcont"></div>
-    </div>
-
-    <div class="columns">
-      <div class="column">
-        <div id="leftcont"></div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="column">
-        <div id="rightcont"></div>
-      </div>
+      <h3 id="titulek"></h3>
+      <div id="contents"></div>
     </div>
   </div>
 </body>

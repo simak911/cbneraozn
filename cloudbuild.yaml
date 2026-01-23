@@ -1,0 +1,21 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/cbneraozn', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/cbneraozn']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run', 'deploy', 'cbneraozn',
+        '--image', 'gcr.io/$PROJECT_ID/cbneraozn',
+        '--platform', 'managed',
+        '--region', 'europe-central2',
+        '--allow-unauthenticated'
+      ]
+
+images:
+  - 'gcr.io/$PROJECT_ID/cbneraozn'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
