@@ -1,7 +1,7 @@
 var count = 0;
 
 async function nacitani() {
-    const url = window.location.origin + '/getbezne';
+    const url = window.location.origin + '/getdata';
     const response = await fetch(url);
     const json = await response.json();
     const data = json.data;
@@ -34,8 +34,6 @@ async function nacitani() {
 
 
 function kliknuto () {
-    console.log('jsemtu2')
-    const klikani = document.getElementById('klikani');
     const res = Array(count).fill(0)
     for (let i=0; i<count; i++) {
         const idecko = `checkbox${i}`
@@ -45,7 +43,17 @@ function kliknuto () {
             res[i] = 1
         }
     }
-    console.log(res)    
+    const additional = document.getElementById('pridano').value;
+    const jsonik = {'data': res, 'added': additional};
+    const datajs = JSON.stringify(jsonik);
+    const url = window.location.origin + '/submit';
+    const response = fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: datajs
+    });
 }
 
 const subbut = document.getElementById('subbut');

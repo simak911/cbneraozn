@@ -1,12 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oznámení</title>
+  <meta charset="UTF-8" />
+  <title>Fullscreen Centered Layout</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      font-family: Calibri, "Segoe UI", Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .screen {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(16px, 4vw, 48px);
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    header {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: clamp(16px, 3vh, 32px);
+    }
+
+    .intro {
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      margin-bottom: clamp(24px, 5vh, 48px);
+      max-width: 900px;
+      align-self: center;
+    }
+
+    .columns {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      align-items: center;
+    }
+
+    .divider {
+      background: rgba(255, 255, 255, 0.3);
+      height: 70%;
+      justify-self: center;
+    }
+
+    .column {
+      padding: clamp(16px, 3vw, 32px);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
-    
+  <div class="screen">
+    <header>
+      Header Title
+    </header>
+
+    <div class="intro">
+      This text scales with the screen and stays centered.  
+      No scrolling. One clean fullscreen.
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        Left column text
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="column">
+        Right column text
+      </div>
+    </div>
+  </div>
 </body>
 <script src="{{ url_for('static', filename='scripts/script_index.js') }}"></script>
 </html>
