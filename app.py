@@ -91,9 +91,11 @@ def get_all_data():
 
     f = open('./navic.txt', 'r', encoding='utf-8')
     lines = f.readlines()
-    left = 'Další oznámení: \n' + '\n'.join(lines)
+    introl = 'Další oznámení: \n \n'
+    left = ''.join(lines)
     f.close()
 
+    intror = 'Blížící se akce: \n \n'
     right = ''
     zadyl = read_data('./zadyl.csv')
     tsp_now = datetime.now(timezone.utc).timestamp()
@@ -105,7 +107,7 @@ def get_all_data():
             if tsp_now < tsp:
                 right += f'{line[3]} : {line[4]} \n'
 
-    return {'top': top, 'left': left, 'right': right}
+    return {'top': top, 'left': introl + left, 'right': intror + right}
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
