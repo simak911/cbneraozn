@@ -37,7 +37,7 @@ function startPolling() {
 }
 
 function startShowing() {
-  interval2 = setInterval(show, 7000);
+  interval2 = setInterval(show, 10000);
 }
 
 startPolling();
